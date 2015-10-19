@@ -7,8 +7,10 @@ var SECRET_LENGTH = 48;
 
 var client = Schema({
     name: String,
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
-    secret: String
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    secret: String,
+    has: {type: Object, default: {}},
+    allowed: {type: Object, default: {}}
 });
 
 /*
