@@ -9,6 +9,7 @@ var client = Schema({
     name: String,
     user: {type: Schema.Types.ObjectId, ref: 'User'},
     secret: String,
+    to: [String],
     has: {type: Object, default: {}},
     allowed: {type: Object, default: {}}
 });
@@ -31,7 +32,7 @@ client.methods.refresh = function (cb) {
     var that = this;
     crypto.randomBytes(SECRET_LENGTH, function (err, buf) {
         if (err) {
-            console.error(err);
+            log.error(err);
             cb(err);
             return;
         }
