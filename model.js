@@ -14,15 +14,13 @@ var client = Schema({
     allowed: {type: Object, default: {}}
 });
 
-/*
- client.set('toJSON', {
- getters: true,
- virtuals: false,
- transform: function (doc, ret, options) {
- //delete this.secret;
- }
- });
- */
+client.set('toJSON', {
+    getters: true,
+    //virtuals: false,
+    transform: function (doc, ret, options) {
+        delete ret._id;
+    }
+});
 
 client.methods.verify = function (secret) {
     return this.secret === secret;
@@ -45,6 +43,10 @@ client.pre('save', function (next) {
     this.refresh(function (err) {
         next(err);
     });
+});
+
+client.virtual('id').get(function () {
+    return this._id;
 });
 
 /*
