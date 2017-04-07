@@ -1,6 +1,6 @@
 {
-    "name": "client",
-    "description": "client",
+    "name": "model-clients",
+    "description": "model-clients",
     "version": "0.0.0",
     "author": {
         "name": "serandives",
@@ -12,6 +12,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/serandules/client.git"
+        "url": "git://github.com/serandules/model-clients.git"
     }
 }

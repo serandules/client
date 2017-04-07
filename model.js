@@ -1,4 +1,4 @@
-var log = require('logger')('client');
+var log = require('logger')('model-clients');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
