@@ -26,6 +26,7 @@ var client = Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
+        required: true,
         ref: 'users',
         validator: types.ref()
     },
