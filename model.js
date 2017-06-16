@@ -8,6 +8,13 @@ var types = require('validators').types;
 var SECRET_LENGTH = 48;
 
 var client = Schema({
+    user: {
+        server: true,
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'users',
+        validator: types.ref()
+    },
     has: {type: Object, default: {}},
     allowed: {type: Object, default: {}},
     secret: {type: String},
@@ -23,12 +30,6 @@ var client = Schema({
         validator: types.string({
             length: 1000
         })
-    },
-    user: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'users',
-        validator: types.ref()
     },
     to: {
         type: [String],
