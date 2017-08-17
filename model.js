@@ -4,19 +4,12 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 
 var types = require('validators').types;
+var mongins = require('mongins');
 
 var SECRET_LENGTH = 48;
 
 var client = Schema({
-    user: {
-        server: true,
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'users',
-        validator: types.ref()
-    },
     has: {type: Object, default: {}},
-    allowed: {type: Object, default: {}},
     secret: {type: String},
     name: {
         type: String,
@@ -41,6 +34,11 @@ var client = Schema({
         })
     }
 }, {collection: 'clients'});
+
+client.plugin(mongins);
+client.plugin(mongins.user);
+client.plugin(mongins.createdAt);
+client.plugin(mongins.updatedAt);
 
 client.set('toJSON', {
     getters: true,
