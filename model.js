@@ -40,15 +40,6 @@ client.plugin(mongins.user);
 client.plugin(mongins.createdAt);
 client.plugin(mongins.updatedAt);
 
-client.set('toJSON', {
-    getters: true,
-    //virtuals: false,
-    transform: function (doc, ret, options) {
-        delete ret._id;
-        delete ret.__v;
-    }
-});
-
 client.methods.verify = function (secret) {
     return this.secret === secret;
 };
@@ -70,10 +61,6 @@ client.pre('save', function (next) {
     this.refresh(function (err) {
         next(err);
     });
-});
-
-client.virtual('id').get(function () {
-    return this._id;
 });
 
 /*
