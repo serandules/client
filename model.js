@@ -48,7 +48,7 @@ client.methods.refresh = function (cb) {
     var that = this;
     crypto.randomBytes(SECRET_LENGTH, function (err, buf) {
         if (err) {
-            log.error(err);
+            log.error('clients:refresh', err);
             cb(err);
             return;
         }
