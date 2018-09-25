@@ -37,8 +37,8 @@ var client = Schema({
 
 client.plugin(mongins);
 client.plugin(mongins.user);
-client.plugin(mongins.createdAt);
-client.plugin(mongins.updatedAt);
+client.plugin(mongins.createdAt());
+client.plugin(mongins.updatedAt());
 
 client.methods.verify = function (secret) {
     return this.secret === secret;
