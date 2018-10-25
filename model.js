@@ -35,7 +35,7 @@ var client = Schema({
     }
 }, {collection: 'clients'});
 
-client.plugin(mongins);
+client.plugin(mongins());
 client.plugin(mongins.user);
 client.plugin(mongins.createdAt());
 client.plugin(mongins.updatedAt());
