@@ -3,8 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 
-var types = require('validators').types;
 var mongins = require('mongins');
+var validators = require('validators');
+
+var types = validators.types;
 
 var SECRET_LENGTH = 48;
 
