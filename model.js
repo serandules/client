@@ -11,7 +11,6 @@ var types = validators.types;
 var SECRET_LENGTH = 48;
 
 var client = Schema({
-    has: {type: Object, default: {}},
     secret: {type: String},
     name: {
         type: String,
