@@ -10,7 +10,7 @@ var types = validators.types;
 
 var SECRET_LENGTH = 48;
 
-var client = Schema({
+var schema = Schema({
     secret: {type: String},
     name: {
         type: String,
@@ -36,16 +36,25 @@ var client = Schema({
     }
 }, {collection: 'clients'});
 
-client.plugin(mongins());
-client.plugin(mongins.user);
-client.plugin(mongins.createdAt());
-client.plugin(mongins.updatedAt());
+schema.plugin(mongins());
+schema.plugin(mongins.user);
+schema.plugin(mongins.permissions({
+    workflow: 'model'
+}));
+schema.plugin(mongins.status({
+    workflow: 'model'
+}));
+schema.plugin(mongins.visibility({
+    workflow: 'model'
+}));
+schema.plugin(mongins.createdAt());
+schema.plugin(mongins.updatedAt());
 
-client.methods.verify = function (secret) {
+schema.methods.verify = function (secret) {
     return this.secret === secret;
 };
 
-client.methods.refresh = function (cb) {
+schema.methods.refresh = function (cb) {
     var that = this;
     crypto.randomBytes(SECRET_LENGTH, function (err, buf) {
         if (err) {
@@ -58,7 +67,7 @@ client.methods.refresh = function (cb) {
     });
 };
 
-client.pre('save', function (next) {
+schema.pre('save', function (next) {
     this.refresh(function (err) {
         next(err);
     });
@@ -75,4 +84,4 @@ client.pre('save', function (next) {
  callback(null);
  };*/
 
-module.exports = mongoose.model('clients', client);
+module.exports = mongoose.model('clients', schema);
