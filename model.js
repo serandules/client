@@ -39,13 +39,13 @@ var schema = Schema({
 schema.plugin(mongins());
 schema.plugin(mongins.user);
 schema.plugin(mongins.permissions({
-    workflow: 'model'
+    workflow: 'model-clients'
 }));
 schema.plugin(mongins.status({
-    workflow: 'model'
+    workflow: 'model-clients'
 }));
 schema.plugin(mongins.visibility({
-    workflow: 'model'
+    workflow: 'model-clients'
 }));
 schema.plugin(mongins.createdAt());
 schema.plugin(mongins.updatedAt());
