@@ -49,6 +49,7 @@ schema.plugin(mongins.visibility({
 }));
 schema.plugin(mongins.createdAt());
 schema.plugin(mongins.updatedAt());
+schema.plugin(mongins.modifiedAt());
 
 schema.methods.verify = function (secret) {
     return this.secret === secret;
